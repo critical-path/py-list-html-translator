@@ -128,6 +128,14 @@ cd ./dist
 pip3 install py-list-html-translator-1.0.0.tar.gz
 ```
 
+If we encounter any errors during installation, then we will try again, this time prefacing all commands with "sudo."
+
+```
+sudo python3 setup.py build sdist
+cd ./dist
+sudo pip3 install py-list-html-translator-1.0.0.tar.gz
+```
+
 ## Using py-list-html-translator
 
 1. Import the Translator class from the list_html_translator module.
