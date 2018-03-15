@@ -4,7 +4,7 @@
 
 Writing HTML is tedious.  py-list-html-translator makes it fun!
 
-With py-list-html-translator, we use uses strings to define HTML elements and nested lists to describe the hierarchical relationships between them.
+With py-list-html-translator, we use strings to define HTML elements and nested lists to describe the hierarchical relationships between them.
 
 ## Defining HTML Elements
 
@@ -48,32 +48,32 @@ py-list-html-translator supports void elements, which have no closing tags.
 
 Notes:
 
-It is good practice to enclose attribute values in quotation marks and to escape the quotation marks.
+- It is good practice to enclose attribute values in quotation marks and to escape the quotation marks.
 
-Good:
+- __Good__:
 
 ```
 [“@h1 &arbitrary-key=\"arbitrary-value\””] 
 <h1 arbitrary-key="arbitrary-value"></h1>
 ```
 
-Bad:
+- __Bad__:
 
 ```
 [“@h1 &arbitrary-key=arbitrary-value"]
 <h1 arbitrary-key=arbitrary-value></h1>
 ```
 
-Please remember to separate text values with non-space characters.  (This is a shortcoming in the code.) 
+- Please remember to separate text values with non-space characters.  (This is a shortcoming in the code.) 
 
-Good:
+__Good__:
 
 ```
 ["@h1 $this-is-text"]
 <h1>this-is-text</h1>
 ```
 
-Bad:
+__Bad__:
 
 ```
 ["@h1 $this is text"]
@@ -84,7 +84,7 @@ Bad:
 
 To describe the hierarchical relationships between HTML elements, we use nested lists.
 
-`
+```
 ["@html &lang=\"en\""]
 <html lang="en"></html>
 
@@ -99,7 +99,7 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 
 ["@html &lang=\"en\"", ["@head", ["@meta charset=\"utf-8\""], ["@title $app"]], ["@body"]]
 <html lang="en"><head><meta charset="utf-8"><title>app</title></head><body></body></html>
-`
+```
 
 ## Dependencies:
 
@@ -130,8 +130,6 @@ pip3 install py-list-html-translator-1.0.0.tar.gz
 
 ## Using py-list-html-translator
 
-To use py-list-html-translator, follow five easy steps:
-
 1. Import the Translator class from the list_html_translator module.
 2. Create a list.
 3. Instantiate Translator, passing in the list.
@@ -147,8 +145,6 @@ print(out_html)
 ```
 
 ## Testing py-list-html-translator
-
-To test py-list-html-translator, follow three easy steps:
 
 1. Locate the directory in which the list_html_translator module is located.
 2. Change to that directory.
