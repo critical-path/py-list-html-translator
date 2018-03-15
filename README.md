@@ -50,14 +50,14 @@ Notes:
 
 It is good practice to enclose attribute values in quotation marks and to escape the quotation marks.
 
-- __Good__:
+__Good__:
 
 ```
 [“@h1 &arbitrary-key=\"arbitrary-value\””] 
 <h1 arbitrary-key="arbitrary-value"></h1>
 ```
 
-- __Bad__:
+__Bad__:
 
 ```
 [“@h1 &arbitrary-key=arbitrary-value"]
@@ -66,14 +66,14 @@ It is good practice to enclose attribute values in quotation marks and to escape
 
 Please remember to separate text values with non-space characters.  (This is a shortcoming in the code.) 
 
-- __Good__:
+__Good__:
 
 ```
 ["@h1 $this-is-text"]
 <h1>this-is-text</h1>
 ```
 
-- __Bad__:
+__Bad__:
 
 ```
 ["@h1 $this is text"]
