@@ -109,7 +109,7 @@ To use py-list-html-translator, we will need Python 3.x and pip (https://www.pyt
 ## Installing py-list-html-translator
 
 1. Download this repository.
-2. Extract its contents into the desired directory.
+2. Extract its contents.
 3. Run python3 setup.py build sdist.
 
 ```
