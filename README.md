@@ -156,10 +156,14 @@ print(out_html)
 
 1. Locate the directory in which the list_html_translator module is located.
 2. Change to that directory.
-3. Run pytest list_html_translator_tests.py.
 
 ```
 cd /path/to/list_html_translator/
+```
+
+3. Run pytest list_html_translator_tests.py.
+
+```
 pytest list_html_translator_tests.py
 ```
 
