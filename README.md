@@ -64,7 +64,7 @@ __Bad__:
 <h1 arbitrary-key=arbitrary-value></h1>
 ```
 
-Please remember to separate text values with non-space characters.  (This is a shortcoming in the code.) 
+Please remember to separate text values with non-space characters.  (Sorry!  This is a shortcoming in the code.) 
 
 __Good__:
 
