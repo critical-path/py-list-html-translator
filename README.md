@@ -116,7 +116,7 @@ To use py-list-html-translator, we will need Python 3.x and pip (https://www.pyt
 python3 setup.py build sdist
 ```
 
-4. Change to the dist sub-directory.
+4. Change to the dist directory.
 
 ```
 cd ./dist
@@ -128,7 +128,7 @@ cd ./dist
 pip3 install py-list-html-translator-1.0.0.tar.gz
 ```
 
-If we encounter any errors during installation, then we will try again, this time prefacing all commands with "sudo."
+If we encounter any errors during installation, then we will try again, this time prefacing our commands with "sudo."
 
 ```
 sudo python3 setup.py build sdist
