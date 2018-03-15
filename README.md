@@ -103,7 +103,7 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 
 ## Dependencies:
 
-To use py-list-html-translator, we will need Python 3.x (https://www.python.org).  To test it, we will need pytest (https://pytest.org).
+To use py-list-html-translator, we will need Python 3.x and pip (https://www.python.org).  To test it, we will need pytest (https://pytest.org).
 
 
 ## Installing py-list-html-translator
