@@ -3,7 +3,7 @@
 """
 how to use py-list-html-translator:
  
-from array_html_translator import Translator
+from list_html_translator import Translator
 in_list = ["@html"]
 translator = Translator(in_list)
 out_html = translator.translate()
