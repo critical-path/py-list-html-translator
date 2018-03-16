@@ -26,7 +26,7 @@ setup(
     "Programming Language :: Python :: 3"
   ],
 
-  keywords="py-list-html-translator python lists html translator",
+  keywords="python lists html translator",
 
   packages=find_packages(),
 
