@@ -1,5 +1,7 @@
 ## py-list-html-translator v1.0.0
 
+py-list-html-translator is a Python module that translates lists to HTML.
+
 ## Introduction
 
 Writing HTML is tedious.  py-list-html-translator makes it fun!
