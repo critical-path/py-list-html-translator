@@ -107,35 +107,24 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 
 To use py-list-html-translator, we will need Python 3.x and pip (https://www.python.org).  To test it, we will need pytest (https://pytest.org).
 
+## Installing py-list-html-translator with testing dependencies
 
-## Installing py-list-html-translator
+1. Clone or download this repository.
 
-1. Download this repository.
-2. Extract its contents.
-3. Run python3 setup.py build sdist.
-
-```
-python3 setup.py build sdist
-```
-
-4. Change to the dist directory.
+2. Using sudo, run pip3 with the install command and the --editable option.
 
 ```
-cd ./dist
+sudo pip3 install --editable .[test] .
 ```
 
-5. Run pip3 install py-list-html-translator-1.0.0.tar.gz.
+## Installing py-list-html-translator without testing dependencies
+
+1. Clone or download this repository.
+
+2. Using sudo, run pip3 with the install command.
 
 ```
-pip3 install py-list-html-translator-1.0.0.tar.gz
-```
-
-If we encounter any errors during installation, then we will try again, this time prefacing our commands with "sudo."
-
-```
-sudo python3 setup.py build sdist
-cd ./dist
-sudo pip3 install py-list-html-translator-1.0.0.tar.gz
+sudo pip3 install .
 ```
 
 ## Using py-list-html-translator
@@ -154,16 +143,15 @@ out_html = translator.translate()
 print(out_html)
 ```
 
-## Testing py-list-html-translator
+## Testing py-list-html-translator after installation
 
-1. Locate the directory in which the list_html_translator module is located.
-2. Change to that directory.
+1. Change to the tests directory.
 
 ```
-cd /path/to/list_html_translator/
+cd ./tests
 ```
 
-3. Run pytest list_html_translator_tests.py.
+2. Run pytest.
 
 ```
 pytest list_html_translator_tests.py
