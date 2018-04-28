@@ -1,11 +1,3 @@
-"""
-from list_html_translator import Translator
-in_list = ["@html"]
-translator = Translator(in_list)
-out_html = translator.translate()
-print(out_html)
-"""
-
 class Translator(object):
   def __init__(self, list):
     """ requires list as argument """
