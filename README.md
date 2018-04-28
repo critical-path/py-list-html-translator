@@ -156,6 +156,3 @@ cd ./tests
 ```
 pytest list_html_translator_tests.py
 ```
-
-These test cases are not exhaustive.  They are meant to provide a basic level of confidence in py-list-html-translator.
-
