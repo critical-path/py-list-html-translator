@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/critical-path/py-list-html-translator.svg?branch=master)](https://travis-ci.com/critical-path/py-list-html-translator)
+
 ## py-list-html-translator v1.0.0
 
 py-list-html-translator is a Python module that translates lists to HTML.
