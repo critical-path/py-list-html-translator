@@ -151,8 +151,8 @@ print(out_html)
 cd ./tests
 ```
 
-2. Run pytest.
+2. Run pytest with the -vv, --cov, and --cov-report options.
 
 ```
-pytest list_html_translator_tests.py
+pytest -vv --cov=list_html_translator --cov-report=term-missing
 ```
