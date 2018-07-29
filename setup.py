@@ -1,5 +1,7 @@
-from setuptools import find_packages
-from setuptools import setup
+from setuptools import (
+    find_packages,
+    setup
+)
 
 
 setup(
@@ -20,7 +22,8 @@ setup(
     packages=find_packages(),
     extras_require={
         "test": [
-            "pytest"
+            "pytest",
+            "pytest-cov"
         ]
     }
 )
