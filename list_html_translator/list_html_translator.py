@@ -1,213 +1,263 @@
+"""The Translator class converts a list to HTML."""
+
+
 class Translator(object):
-  def __init__(self, list):
-    """ requires list as argument """
+  """The Translator class converts a list to HTML.
+
+     Parameters
+     ----------
+     input_list : list
+       The list to translate.
+
+     Returns
+     -------
+     self.html_element : str
+       The HTML translation. 
+  """
+  
+  def __init__(self, input_list):
+    """Instantiate Translator."""
     
-    self.list = list
+    self.list = input_list
+
+    self.void_elements = [
+      "area", 
+      "base", 
+      "br", 
+      "col", 
+      "embed",
+      "hr", 
+      "img", 
+      "input", 
+      "keygen", 
+      "link", 
+      "meta", 
+      "param", 
+      "source", 
+      "track", 
+      "wbr"
+    ] 
+
+    self.html_element_name = {
+      "delimiter": "@", 
+      "key": None, 
+      "value": ""
+    }
+
+    self.html_element_id = {
+      "delimiter": "#", 
+      "key": "id", 
+      "value": ""
+    }
+
+    self.html_element_class = {
+      "delimiter": ".", 
+      "key": "class", 
+      "value": ""
+    }
+
+    self.html_element_attributes = {
+      "delimiter": "&", 
+      "pairs": []
+    }
+
+    self.html_element_text = {
+      "delimiter": "$", 
+      "key": None, 
+      "value": ""
+    }
+
     self.branch_html_elements = []
-    self.void_elements = ["area", "base", "br", "col", "embed",
-                          "hr", "img", "input", "keygen", "link", 
-                          "meta", "param", "source", "track", "wbr"] 
-    self.html_element_name = {"delimiter": "@", "key": None, "value": ""}
-    self.html_element_id = {"delimiter": "#", "key": "id", "value": ""}
-    self.html_element_class = {"delimiter": ".", "key": "class", "value": ""}
-    self.html_element_attributes = {"delimiter": "&", "pairs": []}
-    self.html_element_text = {"delimiter": "$", "key": None, "value": ""}
+
     self.html_element_start_tag = ""
+
     self.html_element_end_tag = ""
+
     self.html_element = ""
 
   def __parse_list__(self):
-    """ parses list (do not call directly) """
+    """Parse an input list.
+
+       Do not call this method directly.
+    """
     
     try:
   
-      # loop over each item in the list.
+      # Loop over each item in the list.
   
       for index in range(0, len(self.list)):
         item = self.list[index]
 
-      # if the item is of type list, 
-      # pass it in to a new instance of Translator,
-      # recursively coverting it to html.
+      # If the item is of type list, pass it in to a new instance 
+      # of Translator, recursively converting it to HTML.
     
         if isinstance(item, list):
           translator = Translator(item)
           branch_html = translator.translate()
           self.branch_html_elements.append(branch_html)
 
-      # if the item is of type string, then is ready to be parsed.
+      # If the item is of type str, then begin to parse it.
     
         else:
           item = item.split(" ")
     
-      # split the string into a list, and loop over each item.
+      # Split the str into a list, and loop over each item.
       
           for index in range(0, len(item)):
             component = item[index]
  
-      # first, try to find the name of the html element.
+      # First, try to find the name of the HTML element.
           
             if component.startswith(self.html_element_name["delimiter"]):
               html_element_name = component.strip(self.html_element_name["delimiter"])
               self.html_element_name["value"] = html_element_name
     
-      # second, try to find its id.
+      # Second, try to find its id.
     
             elif component.startswith(self.html_element_id["delimiter"]):
               html_element_id = component.strip(self.html_element_id["delimiter"])
               self.html_element_id["value"] = html_element_id
 
-      # third, try to find its class.
+      # Third, try to find its class.
     
             elif component.startswith(self.html_element_class["delimiter"]):
               html_element_class = component.strip(self.html_element_class["delimiter"])
               self.html_element_class["value"] = html_element_class
 
-      # fourth, try to find any other of its attributes.
+      # Fourth, try to find any other of its attributes.
 
             elif component.startswith(self.html_element_attributes["delimiter"]):
               html_element_attribute = component.strip(self.html_element_attributes["delimiter"])
               self.html_element_attributes["pairs"].append(html_element_attribute)
 
-      # last, try to find its text content.
+      # Last, try to find its text content.
 
             elif component.startswith(self.html_element_text["delimiter"]):
               html_element_text = component.strip(self.html_element_text["delimiter"])
               self.html_element_text["value"] = html_element_text
 
     except:
-      raise RuntimeError("error parsing array!")
+      raise RuntimeError("Error parsing list.")
 
   def __get_html_element_start_tag__(self):
-    """ gets start tag of html element (do not call directly) """
-  
-    try:
-  
-      # create the start tag of the html element.
-        
-      # first, open the tag.
- 
-      html_element_start_tag = "<"
-    
-      # second, try to add the name of the element.
-    
-      if self.html_element_name["value"]:
-        html_element_name = self.html_element_name["value"]
-        html_element_start_tag += html_element_name + " "
-    
-      # third, try to add its id and enclose it in quotation marks.
-    
-      if self.html_element_id["value"]:
-        html_element_id = self.html_element_id["key"] + "=" + "\"" + self.html_element_id["value"] + "\""
-        html_element_start_tag += html_element_id + " "
+    """Get an HTML element's start tag.
 
-      # fourth, try to add its class and enclose it in quotation marks.
-    
-      if self.html_element_class["value"]:
-        html_element_class = self.html_element_class["key"] + "=" + "\"" + self.html_element_class["value"] + "\""
-        html_element_start_tag += html_element_class + " "
+       Do not call this method directly.
+    """
+  
+    # First, open the HTML element's tag.
  
-      # fifth, try to add any other of its attributes, assuming that the
-      # user enclosed them in quotation marks.
+    html_element_start_tag = "<"
     
-      if self.html_element_attributes["pairs"]:
-        html_element_attributes = ""
+    # Second, try to add the name of the element.
     
-        for attribute in self.html_element_attributes["pairs"]:
-          html_element_attributes += attribute + " "
+    if self.html_element_name["value"]:
+      html_element_name = self.html_element_name["value"]
+      html_element_start_tag += html_element_name + " "
     
-        html_element_start_tag += html_element_attributes
+    # Third, try to add its id and enclose it in quotation marks.
     
-      # sixth, remove any trailing space characters.
-    
-      html_element_start_tag = html_element_start_tag.strip()
-    
-      # last, close the tag.
-    
-      html_element_start_tag += ">"
-    
-      self.html_element_start_tag = html_element_start_tag
+    if self.html_element_id["value"]:
+      html_element_id = self.html_element_id["key"] + "=" + "\"" + self.html_element_id["value"] + "\""
+      html_element_start_tag += html_element_id + " "
 
-    except:
-      raise RuntimeError("error getting html element's opening tag!")
+    # Fourth, try to add its class and enclose it in quotation marks.
+    
+    if self.html_element_class["value"]:
+      html_element_class = self.html_element_class["key"] + "=" + "\"" + self.html_element_class["value"] + "\""
+      html_element_start_tag += html_element_class + " "
+ 
+    # Fifth, try to add any other of its attributes, 
+    # assuming that the user enclosed them in quotation marks.
+    
+    if self.html_element_attributes["pairs"]:
+      html_element_attributes = ""
+    
+      for attribute in self.html_element_attributes["pairs"]:
+        html_element_attributes += attribute + " "
+    
+      html_element_start_tag += html_element_attributes
+    
+    # Sixth, remove any trailing space characters.
+    
+    html_element_start_tag = html_element_start_tag.strip()
+    
+    # Last, close the tag.
+    
+    html_element_start_tag += ">"
+    
+    self.html_element_start_tag = html_element_start_tag
 
   def __get_html_element_end_tag__(self):
-    """ gets end tag of html element (do not call directly) """
+    """Get an HTML element's end tag.
 
-    try:
-      
-      # create the end tag of html element.
-    
-      # first, determine whether it requires an end tag.
-      # if not, then pass.  if yes, then proceed.
+       Do not call this method directly.
+    """
+
+    # First, determine whether the HTML element requires an end tag.
+    # If not, then pass.  If yes, then proceed.
   
-      if self.html_element_name["value"] in self.void_elements:
-        pass
+    if self.html_element_name["value"] in self.void_elements:
+      pass
   
-      else:
+    else:
     
-      # second, open the tag.
+    # Second, open the tag.
     
-        html_element_end_tag = "</"
+      html_element_end_tag = "</"
     
-      # third, try to add the name of the element.
+    # Third, try to add the name of the element.
         
-        if self.html_element_name["value"]:
-          html_element_name = self.html_element_name["value"]
-          html_element_end_tag += html_element_name
+      if self.html_element_name["value"]:
+        html_element_name = self.html_element_name["value"]
+        html_element_end_tag += html_element_name
     
-      # fourth, close the tag.
+    # Fourth, close the tag.
     
-        html_element_end_tag += ">"
+      html_element_end_tag += ">"
 
-        self.html_element_end_tag = html_element_end_tag
-
-    except:
-      raise RuntimeError("error getting html element's closing tag!")
+      self.html_element_end_tag = html_element_end_tag
 
   def __get_html_element__(self):
-    """ gets full html element (do not call directly) """
+    """Get a full HTML element, including start and end tags.
 
-    try:
-  
-      # create the full html element.
-  
-      html_element = ""
+       Do not call this method directly.
+    """
+
+    html_element = ""
     
-      # first, add the start tag.
+    # First, add the HTML element's start tag.
     
-      html_element += self.html_element_start_tag
+    html_element += self.html_element_start_tag
     
-      # second, try to add its text content.
+    # Second, try to add its text content.
     
-      if self.html_element_text["value"]:
-        html_element_text = self.html_element_text["value"]
-        html_element += html_element_text
+    if self.html_element_text["value"]:
+      html_element_text = self.html_element_text["value"]
+      html_element += html_element_text
  
-      # third, try to add the html of any branches.
+    # Third, try to add the HTML of any branches.
     
-      if self.branch_html_elements:
-        for index in range(0, len(self.branch_html_elements)):
-          branch_html_element = self.branch_html_elements[index]
-          html_element += branch_html_element
+    if self.branch_html_elements:
+      for index in range(0, len(self.branch_html_elements)):
+        branch_html_element = self.branch_html_elements[index]
+        html_element += branch_html_element
     
-      # last, close the tag.
+    # Last, close the tag.
     
-      html_element += self.html_element_end_tag
+    html_element += self.html_element_end_tag
     
-      self.html_element = html_element
-
-    except:
-      raise RuntimeError("error getting full html element!")
+    self.html_element = html_element
 
   def translate(self):
-    """ translates list to html (call directly) """
+    """Convert an input list to HTML.
+
+       Call this method directly.
+    """
   
     self.__parse_list__()
     self.__get_html_element_start_tag__()
     self.__get_html_element_end_tag__()
     self.__get_html_element__()
     
-    html = self.html_element
-    
-    return html
+    return self.html_element
