@@ -117,7 +117,9 @@ class TestSuite(object):
     [None]
   ])
   def test_error(self, invalid_input):
-    with raises(RuntimeError):
+    with raises(RuntimeError) as exception:
       in_list = invalid_input
       translator = Translator(in_list)
       actual_result = translator.translate()
+
+    assert "Error parsing list." in str(exception.value)
