@@ -1,7 +1,8 @@
+"""Writing HTML is tedious.  py-list-html-translator makes it fun!"""
+
+
 from .list_html_translator import Translator
 
-
-"writing html is tedious.  py-list-html-translator makes it fun!"
 
 __version__ = "1.0.0"
 
