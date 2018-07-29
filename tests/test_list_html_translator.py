@@ -1,5 +1,11 @@
 from list_html_translator import Translator
 
+from pytest import (
+  mark,
+  raises
+)
+
+
 class TestSuite(object):
   def test_element_name(self):
     in_list = ["@h1"]
@@ -57,11 +63,28 @@ class TestSuite(object):
 
     assert actual_result == expected_result
 
-  def test_void_element(self):
-    in_list = ["@meta &charset=\"utf-8\""]
+  @mark.parametrize("element", [
+    "area",
+    "base",
+    "br",
+    "col",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr"
+  ])
+  def test_void_element(self, element):
+    in_list = ["@{} &charset=\"utf-8\"".format(element)]
     translator = Translator(in_list)
     actual_result = translator.translate()
-    expected_result = "<meta charset=\"utf-8\">"
+    expected_result = "<{} charset=\"utf-8\">".format(element)
 
     assert actual_result == expected_result
 
@@ -88,3 +111,13 @@ class TestSuite(object):
     expected_result = "<html><body><div><h1>text</h1></div></body></html>"
 
     assert actual_result == expected_result
+
+  @mark.parametrize("invalid_input", [
+    None,
+    [None]
+  ])
+  def test_error(self, invalid_input):
+    with raises(RuntimeError):
+      in_list = invalid_input
+      translator = Translator(in_list)
+      actual_result = translator.translate()
