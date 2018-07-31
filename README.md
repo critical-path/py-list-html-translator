@@ -107,26 +107,26 @@ To describe the hierarchical relationships between HTML elements, we use nested 
 
 ## Dependencies:
 
-To use py-list-html-translator, we will need Python 3.x and pip (https://www.python.org).  To test it, we will need pytest (https://pytest.org).
+To use py-list-html-translator, we will need Python and pip.  To test it, we will need pytest pytest-cov.
 
 ## Installing py-list-html-translator with testing dependencies
 
 1. Clone or download this repository.
 
-2. Using sudo, run pip3 with the install command and the --editable option.
+2. Using sudo, run pip with the install command and the --editable option.
 
 ```
-sudo pip3 install --editable .[test] .
+sudo pip install --editable .[test] .
 ```
 
 ## Installing py-list-html-translator without testing dependencies
 
 1. Clone or download this repository.
 
-2. Using sudo, run pip3 with the install command.
+2. Using sudo, run pip with the install command.
 
 ```
-sudo pip3 install .
+sudo pip install .
 ```
 
 ## Using py-list-html-translator
