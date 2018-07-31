@@ -88,8 +88,9 @@ class Translator(object):
       for index in range(0, len(self.list)):
         item = self.list[index]
 
-      # If the item is of type list, pass it in to a new instance 
-      # of Translator, recursively converting it to HTML.
+      # If the item is of type list, then pass it in to a 
+      # new instance of Translator, recursively converting it 
+      # to HTML.
     
         if isinstance(item, list):
           translator = Translator(item)
