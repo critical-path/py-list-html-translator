@@ -7,6 +7,14 @@ from pytest import (
 
 
 class TestSuite(object):
+  def test_empty_element(self):
+    in_list = [""]
+    translator = Translator(in_list)
+    actual_result = translator.translate()
+    expected_result = "<></>"
+
+    assert actual_result == expected_result
+  
   def test_element_name(self):
     in_list = ["@h1"]
     translator = Translator(in_list)
