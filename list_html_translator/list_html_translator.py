@@ -115,25 +115,25 @@ class Translator(object):
     
       # Second, try to find its id.
     
-            elif component.startswith(self.html_element_id["delimiter"]):
+            if component.startswith(self.html_element_id["delimiter"]):
               html_element_id = component.strip(self.html_element_id["delimiter"])
               self.html_element_id["value"] = html_element_id
 
       # Third, try to find its class.
     
-            elif component.startswith(self.html_element_class["delimiter"]):
+            if component.startswith(self.html_element_class["delimiter"]):
               html_element_class = component.strip(self.html_element_class["delimiter"])
               self.html_element_class["value"] = html_element_class
 
       # Fourth, try to find any other of its attributes.
 
-            elif component.startswith(self.html_element_attributes["delimiter"]):
+            if component.startswith(self.html_element_attributes["delimiter"]):
               html_element_attribute = component.strip(self.html_element_attributes["delimiter"])
               self.html_element_attributes["pairs"].append(html_element_attribute)
 
       # Last, try to find its text content.
 
-            elif component.startswith(self.html_element_text["delimiter"]):
+            if component.startswith(self.html_element_text["delimiter"]):
               html_element_text = component.strip(self.html_element_text["delimiter"])
               self.html_element_text["value"] = html_element_text
 
@@ -196,13 +196,9 @@ class Translator(object):
     """
 
     # First, determine whether the HTML element requires an end tag.
-    # If not, then pass.  If yes, then proceed.
   
-    if self.html_element_name["value"] in self.void_elements:
-      pass
-  
-    else:
-    
+    if self.html_element_name["value"] not in self.void_elements:
+      
     # Second, open the tag.
     
       html_element_end_tag = "</"
