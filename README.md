@@ -113,20 +113,20 @@ To use py-list-html-translator, we will need Python and pip.  To test it, we wil
 
 1. Clone or download this repository.
 
-2. Run pip with the install command and the --editable option.
+2. Using sudo, run pip with the install command and the --editable option.
 
 ```
-pip install --editable .[test]
+sudo pip install --editable .[test]
 ```
 
 ## Installing py-list-html-translator without testing dependencies
 
 1. Clone or download this repository.
 
-2. Run pip with the install command.
+2. Using sudo, run pip with the install command.
 
 ```
-pip install .
+sudo pip install .
 ```
 
 ## Using py-list-html-translator
