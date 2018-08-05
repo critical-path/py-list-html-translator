@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/critical-path/py-list-html-translator.svg?branch=master)](https://travis-ci.com/critical-path/py-list-html-translator)
+[![Build Status](https://travis-ci.com/critical-path/py-list-html-translator.svg?branch=master)](https://travis-ci.com/critical-path/py-list-html-translator) [![Coverage Status](https://coveralls.io/repos/github/critical-path/py-list-html-translator/badge.svg)](https://coveralls.io/github/critical-path/py-list-html-translator)
 
 ## py-list-html-translator v1.0.0
 
