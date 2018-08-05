@@ -1,6 +1,6 @@
 [run]
 branch = True
-source = list_html_translatot
+source = list_html_translator
 
 [report]
 exclude_lines =
