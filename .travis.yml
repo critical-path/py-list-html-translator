@@ -20,8 +20,7 @@ python:
 # job phases
 
 install:
-  - pip install --editable .[test] .
+  - pip install --editable .[test]
 
 script:
-  - cd ./tests
-  - py.test -vv --cov=list_html_translator --cov-branch --cov-report=term-missing
+  - py.test -vv --cov --cov-report=term-missing

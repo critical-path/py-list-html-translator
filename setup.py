@@ -24,6 +24,7 @@ setup(
     packages=find_packages(),
     extras_require={
         "test": [
+            "coveralls",
             "pytest",
             "pytest-cov"
         ]
