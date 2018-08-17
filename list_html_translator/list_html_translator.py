@@ -75,7 +75,7 @@ class Translator(object):
 
     self.html_element = ""
 
-  def __parse_list__(self):
+  def _parse_list(self):
     """Parse an input list.
 
        Do not call this method directly.
@@ -120,7 +120,7 @@ class Translator(object):
     except:
       raise RuntimeError("Error parsing list.")
 
-  def __get_html_element_start_tag__(self):
+  def _get_html_element_start_tag(self):
     """Get an HTML element's start tag.
 
        Do not call this method directly.
@@ -154,7 +154,7 @@ class Translator(object):
     
     self.html_element_start_tag = html_element_start_tag
 
-  def __get_html_element_end_tag__(self):
+  def _get_html_element_end_tag(self):
     """Get an HTML element's end tag.
 
        Do not call this method directly.
@@ -172,7 +172,7 @@ class Translator(object):
 
       self.html_element_end_tag = html_element_end_tag
 
-  def __get_html_element__(self):
+  def _get_html_element(self):
     """Get a full HTML element, including start and end tags.
 
        Do not call this method directly.
@@ -201,9 +201,9 @@ class Translator(object):
        Call this method directly.
     """
   
-    self.__parse_list__()
-    self.__get_html_element_start_tag__()
-    self.__get_html_element_end_tag__()
-    self.__get_html_element__()
+    self._parse_list()
+    self._get_html_element_start_tag()
+    self._get_html_element_end_tag()
+    self._get_html_element()
     
     return self.html_element
